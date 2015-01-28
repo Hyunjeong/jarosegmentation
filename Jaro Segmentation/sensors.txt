@@ -1,0 +1,76 @@
+100	Toilet Flush 
+101	Light switch
+104	Light switch
+105	Light switch
+106	Burner
+107	Light switch
+108	Light switch
+109	Light switch
+118	Burner
+119	Coffee machine
+120	Light switch
+125	Drawer
+126	Refrigerator
+129	Oven
+130	Door
+131	Toaster
+132	Cabinet
+133	Cabinet
+135	Drawer
+136	Window
+137	Freezer
+138	Cabinet
+139	Jewelry box
+140	Door
+141	Door
+142	Washing Machine
+143	Microwave
+144	Refrigerator
+145	Cereal
+146	Drawer
+51	Cabinet
+52	Drawer
+53	Cabinet
+54	Door
+55	Cabinet
+56	DVD 
+57	Medicine cabinet
+58	Medicine cabinet
+59	Cabinet
+60	Containers
+61	Cabinet
+62	Drawer
+63	Cabinet
+64	Lamp
+66	Cabinet
+67	Cabinet
+68	Sink faucet - hot
+69	Drawer
+70	Dishwasher
+71	Drawer
+72	Cabinet
+73	Cabinet
+75	Drawer
+76	Lamp
+78	Drawer
+79	Cabinet
+80	Cabinet
+81	Closet
+82	Drawer
+83	Cabinet
+84	Drawer
+85	Window
+86	Drawer
+87	Drawer
+88	Sink faucet - cold
+89	Cabinet
+90	Laundry Dryer
+91	Refrigerator
+92	Light switch
+93	Shower faucet
+94	Burner
+95	Light switch
+96	Exhaust Fan
+97	Light switch
+98	Garbage disposal
+99	Burner
