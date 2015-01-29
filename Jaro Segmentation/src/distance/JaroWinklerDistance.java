@@ -26,7 +26,7 @@ import java.util.Arrays;
  */
 public class JaroWinklerDistance {
 
-	float threshold = 0.7f;
+	float threshold = 0.5f;
 
 	/**
 	 * Creates a new distance metric with the default threshold
@@ -88,6 +88,9 @@ public class JaroWinklerDistance {
 				break;
 			}
 		}
+		if(prefix > 4)
+			prefix = 4;
+		
 		return new int[] { matches, transpositions / 2, prefix, max.size() };
 	}
 

@@ -24,16 +24,15 @@ import java.util.Arrays;
  * <p>
  * @see <a href="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance</a>
  */
-public class JaroWinklerDistance_TransPermitted {
+public class JaroWinklerDistance_Suff {
 
 	float threshold = 0.5f;
-
 	/**
 	 * Creates a new distance metric with the default threshold
 	 * for the Jaro Winkler bonus (0.7)
 	 * @see #setThreshold(float)
 	 */
-	public JaroWinklerDistance_TransPermitted() {}
+	public JaroWinklerDistance_Suff() {}
 
 	private int[] matches(ArrayList<String> s1, ArrayList<String> s2) {
 		ArrayList<String> max, min;
@@ -44,7 +43,7 @@ public class JaroWinklerDistance_TransPermitted {
 			max = s2;
 			min = s1;
 		}
-		int range = max.size(); //Math.max(max.size() / 2 - 1, 0);
+		int range = Math.max(max.size() / 2 - 1, 0);
 		int[] matchIndexes = new int[min.size()];
 		Arrays.fill(matchIndexes, -1);
 		boolean[] matchFlags = new boolean[max.size()];
@@ -88,22 +87,32 @@ public class JaroWinklerDistance_TransPermitted {
 				break;
 			}
 		}
+		int suffix = 0;
+		for (int mi = min.size() - 1; mi >= 0; mi--) {
+			if (s1.get(mi).equals(s2.get(mi))) {
+				suffix++;
+			} else {
+				break;
+			}
+		}
+		
 		if(prefix > 4)
 			prefix = 4;
+		if(suffix > 4)
+			suffix = 4;
 		
-//		return new int[] { matches, transpositions / 2, prefix, max.size() };
-		return new int[] { matches, 0, prefix, max.size() };
+		return new int[] { matches, transpositions / 2, prefix, suffix, max.size() };
 	}
 
-	public float getDistance(ArrayList<String> s1, ArrayList<String> s2) {
+	public float getDistance(ArrayList<String> s1, ArrayList<String> s2, float prefixScaling, float suffixScaling) {
 		int[] mtp = matches(s1, s2);
 		float m = mtp[0];
 		if (m == 0) {
 			return 0f;
 		}
 		float j = ((m / s1.size() + m / s2.size() + (m - mtp[1]) / m)) / 3;
-		float jw = j < getThreshold() ? j : j + Math.min(0.1f, 1f / mtp[3]) * mtp[2]
-				* (1 - j);
+		float X = 1 - j;
+		float jw = j < getThreshold() ? j : j + prefixScaling * mtp[2] * X + suffixScaling * mtp[3] * X;
 		return jw;
 	}
 
